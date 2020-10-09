@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add a Dojo</h1>
+    <form action="/process_dojo" method="post">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name"><br>
+        <label for="city">City</label>
+        <input type="text" name="city" id="city">
+        <label for="state">State</label>
+        <input type="text" name="state" id="state">
+        <button>Add</button>
+    </form>
+    <h1>Add a Ninja</h1>
+    <form action="/process_ninja" method="post">
+        {% csrf_token %}
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name"><br>
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name">
+        <label for="some_dojo_info">Dojo</label>
+        <select name="dojo_id" id="some_dojo_info">
+            {% for dojo in all_dojos %}
+                <option value="{{dojo.id}}">{{dojo.name}}</option>
+            {% endfor %}
+        </select><br>
+        <button>Add</button>
+    </form>
+    <h1>All the Dojos</h1>
+    {% for dojo in all_dojos %}
+        <h3>Ninjas at the {{dojo.name}}</h3>
+        <ul>
+            {% for ninja in dojo.ninjas.all %}
+            <li>{{ninja.first_name}} {{ninja.last_name}}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>

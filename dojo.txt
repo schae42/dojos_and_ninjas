@@ -1,0 +1,44 @@
+1.) Create 3 dojos
+    	Dojo.objects.create(name="CodingDojo", city="Seattle", state="WA")
+	Dojo.objects.create(name="CodingDojo", city="Bellevue", state="WA")
+    	Dojo.objects.create(name="CodingDojo", city="Arlington", state="VA")
+    
+
+2.) Delete the 3 dojos you just created
+    	c = Dojo.objects.get(id=1)
+    	c.delete()
+    	c = Dojo.objects.get(id=2)
+    	c.delete()
+    	c = Dojo.objects.get(id=3)
+    	c.delete()
+
+3.) Create 3 more dojos
+    	c = Dojo.objects.create(name="CodingDojo", city="Chicago", state="IL")
+    	d = Dojo.objects.create(name="CodingDojo", city="Dallas", state="TX")
+    	l = Dojo.objects.create(name="CodingDojo", city="Los Angeles", state="CA")
+
+4.) Create 3 ninjas that belong to the first dojo
+    	Ninja.objects.create(first_name="Cloud", last_name="Hanberry", enroled=c)
+    	Ninja.objects.create(first_name="Madison", last_name="Hanberry", enroled=c)
+    	Ninja.objects.create(first_name="Evie", last_name="Bledniak", enrold=c)
+
+5.) Create 3 more ninjas and have them belong to the second dojo
+    	d = Dojo.objects.create(city="Dallas")
+    	Ninja.objects.create(first_name="Jack", last_name="Le", enroled=d)
+    	Ninja.objects.create(first_name="Glenn", last_name="Zekser", enroled=d)
+    	Ninja.objects.create(first_name="Manali", last_name="Manglorkar", enroled=d)
+
+6.) Create 3 more ninjas and have them belong to the third dojo
+    	l = Dojo.objects.create(city="Los Angeles")
+    	Ninja.objects.create(first_name="Taylor", last_name="Lee", enroled=l)
+    	Ninja.objects.create(first_name="Anna", last_name="Upton", enroled=l)
+    	Ninja.objects.create(first_name="Marcus", last_name="Moore", enroled=l)
+
+7.) Retrieve all the ninjas from the first dojo
+	c.ninjas.all()
+
+8.) Retrieve all the ninjas from the last dojo
+	l.ninjas.all()
+
+9.) Retrieve the last ninja's dojo
+	l.ninjas.last
